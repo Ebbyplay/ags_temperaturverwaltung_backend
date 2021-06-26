@@ -7,14 +7,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
-@Getter
-@Setter
+@Data
 @Entity
 @Table(name = "user")
-public class User extends BaseEntity {
+public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -32,14 +30,4 @@ public class User extends BaseEntity {
 
     @Column(name = "admin", nullable = false)
     private boolean admin;
-
-    public User() {
-    }
-
-    public User(String name, String nickname, String phonenumber, boolean admin) {
-        this.name = name;
-        this.nickname = nickname;
-        this.phonenumber = phonenumber;
-        this.admin = admin;
-    }
 }
