@@ -41,8 +41,9 @@ public class Log {
     public Log() {
     }
 
-    public Log(Float newMaxTemp, User user) {
+    public Log(Float newMaxTemp, User user, Sensor sensor) {
         this.newMaxTemperature = newMaxTemp;
         this.user = user;
+        this.sensor = sensor;
     }
 }
