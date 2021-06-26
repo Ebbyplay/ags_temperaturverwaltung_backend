@@ -39,7 +39,7 @@ public class UserController {
     @PostMapping("/create")
     public User createUser(@RequestBody UserDTO userDto) {
         User newUser = userMapper.mapDTO(userDto);
-        return userService.addUser(newUser);
+        return userService.createUser(newUser);
     }
 
     @PutMapping("/update")

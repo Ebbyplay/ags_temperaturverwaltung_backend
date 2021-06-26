@@ -16,7 +16,7 @@ public class UserService {
     @Autowired
     private UserDAO userDAO;
 
-    public User addUser(User user) {
+    public User createUser(User user) {
         return userDAO.save(user);
     }
 
@@ -36,7 +36,7 @@ public class UserService {
 
     public User updateUser(User user) {
         if (findUserById(user.getId()) != null) {
-            return addUser(user);
+            return createUser(user);
         } else {
             throw new UserNotFoundException(user.getId());
         }
