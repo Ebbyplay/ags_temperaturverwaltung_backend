@@ -30,4 +30,14 @@ public class User {
 
     @Column(name = "admin", nullable = false)
     private boolean admin;
+
+    public User() {
+    }
+
+    public User(String name, String nickname, String phonenumber, boolean isAdmin) {
+        this.name = name;
+        this.nickname = nickname;
+        this.phonenumber = phonenumber;
+        this.admin = isAdmin;
+    }
 }

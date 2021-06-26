@@ -31,7 +31,15 @@ public class Log {
     @Column(name = "timestamp", nullable = false)
     private LocalDateTime timestamp = LocalDateTime.now();
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "userId")
     private User user;
+
+    public Log() {
+    }
+
+    public Log(Float newMaxTemp, User user) {
+        this.newMaxTemperature = newMaxTemp;
+        this.user = user;
+    }
 }
