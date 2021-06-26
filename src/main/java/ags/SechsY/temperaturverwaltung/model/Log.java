@@ -5,7 +5,6 @@ import java.time.LocalDateTime;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -32,8 +31,12 @@ public class Log {
     private LocalDateTime timestamp = LocalDateTime.now();
 
     @ManyToOne(cascade = CascadeType.MERGE)
-    @JoinColumn(name = "userId")
+    @JoinColumn(name = "userId", nullable = false)
     private User user;
+
+    @ManyToOne(cascade = CascadeType.MERGE)
+    @JoinColumn(name = "sensorId", nullable = false)
+    private Sensor sensor;
 
     public Log() {
     }
