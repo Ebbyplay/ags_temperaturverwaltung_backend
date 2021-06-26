@@ -25,9 +25,8 @@ public class UserService {
 
         if (!user.isPresent()) {
             throw new UserNotFoundException(id);
-        } else {
-            return user.get();
         }
+        return user.get();
     }
 
     public List<User> findAll() {
@@ -40,7 +39,6 @@ public class UserService {
         } else {
             throw new UserNotFoundException(user.getId());
         }
-
     }
 
     public void deleteUserById(Long id) {
