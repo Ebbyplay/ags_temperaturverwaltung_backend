@@ -1,8 +1,11 @@
 package ags.SechsY.temperaturverwaltung.mapper;
 
+import org.springframework.stereotype.Component;
+
 import ags.SechsY.temperaturverwaltung.dto.UserDTO;
 import ags.SechsY.temperaturverwaltung.model.User;
 
+@Component
 public class UserMapper implements BaseMapper<User, UserDTO> {
 
     @Override

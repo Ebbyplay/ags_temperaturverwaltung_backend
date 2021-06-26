@@ -24,7 +24,8 @@ public class UserController {
 
     @Autowired
     private UserService userService;
-    private UserMapper userMapper = new UserMapper();
+    @Autowired
+    private UserMapper userMapper;
 
     @GetMapping("/{id}")
     public User findUser(@PathVariable("id") Long id) {

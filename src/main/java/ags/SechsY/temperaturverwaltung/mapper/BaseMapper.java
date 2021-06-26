@@ -1,8 +1,8 @@
 package ags.SechsY.temperaturverwaltung.mapper;
 
-public interface BaseMapper<E, D> {
+public interface BaseMapper<ENTITY, DTO> {
 
-    public D mapEntity(E e);
+    public DTO mapEntity(ENTITY entity);
 
-    public E mapDTO(D d);
+    public ENTITY mapDTO(DTO dto);
 }
