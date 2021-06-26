@@ -30,9 +30,17 @@ public class Temperature {
     private Float temperature_value;
 
     @Column(name = "timestamp", nullable = false)
-    private LocalDateTime timestamp;
+    private LocalDateTime timestamp = LocalDateTime.now();
 
     @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "sensorId", nullable = false)
     private Sensor sensor;
+
+    public Temperature() {
+    }
+
+    public Temperature(Float temp_value, Sensor sensor) {
+        this.temperature_value = temp_value;
+        this.sensor = sensor;
+    }
 }
