@@ -22,7 +22,7 @@ public class ServerRack {
     @Column(name = "id")
     private long id;
 
-    @OneToOne(cascade = CascadeType.MERGE)
+    @OneToOne
     @JoinColumn(name = "sensor_id", nullable = true)
     private Sensor sensor;
 

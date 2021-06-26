@@ -28,7 +28,7 @@ public class Sensor {
     @Column(name = "max_temperature", nullable = false)
     private Float max_temperature;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "rack_id", nullable = false)
     private ServerRack serverRack;
 
