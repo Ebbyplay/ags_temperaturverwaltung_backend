@@ -35,11 +35,21 @@ public class UserService {
     }
 
     public User updateUser(User user) {
-        return addUser(user);
+        if (findUserById(user.getId()) != null) {
+            return addUser(user);
+        } else {
+            throw new UserNotFoundException(user.getId());
+        }
+
     }
 
-    public void deleteUser(User user) {
-        userDAO.delete(user);
+    public void deleteUserById(Long id) {
+        User user = findUserById(id);
+        if (user != null) {
+            userDAO.delete(user);
+        } else {
+            throw new UserNotFoundException(id);
+        }
     }
 
 }
