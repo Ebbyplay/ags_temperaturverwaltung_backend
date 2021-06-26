@@ -28,10 +28,4 @@ public class LogController {
     public List<Log> findAll() {
         return logService.findAll();
     }
-
-    @PostMapping("/create")
-    public Log createLog(@RequestBody LogDTO dto) {
-        Log log = logMapper.mapDTO(dto);
-        return logService.createLog(log);
-    }
 }
