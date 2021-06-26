@@ -6,22 +6,22 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import ags.SechsY.temperaturverwaltung.dao.UserDAO;
 import ags.SechsY.temperaturverwaltung.exception.UserNotFoundException;
 import ags.SechsY.temperaturverwaltung.model.User;
+import ags.SechsY.temperaturverwaltung.repo.UserRepo;
 
 @Service
 public class UserService {
 
     @Autowired
-    private UserDAO userDAO;
+    private UserRepo userRepo;
 
     public User createUser(User user) {
-        return userDAO.save(user);
+        return userRepo.save(user);
     }
 
     public User findUserById(Long id) {
-        Optional<User> user = userDAO.findById(id);
+        Optional<User> user = userRepo.findById(id);
 
         if (!user.isPresent()) {
             throw new UserNotFoundException(id);
@@ -31,7 +31,7 @@ public class UserService {
     }
 
     public List<User> findAll() {
-        return (List<User>) userDAO.findAll();
+        return (List<User>) userRepo.findAll();
     }
 
     public User updateUser(User user) {
@@ -46,7 +46,7 @@ public class UserService {
     public void deleteUserById(Long id) {
         User user = findUserById(id);
         if (user != null) {
-            userDAO.delete(user);
+            userRepo.delete(user);
         } else {
             throw new UserNotFoundException(id);
         }

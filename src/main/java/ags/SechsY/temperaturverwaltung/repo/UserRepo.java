@@ -1,4 +1,4 @@
-package ags.SechsY.temperaturverwaltung.dao;
+package ags.SechsY.temperaturverwaltung.repo;
 
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import ags.SechsY.temperaturverwaltung.model.User;
 
 @Repository
-public interface UserDAO extends CrudRepository<User, Long> {
+public interface UserRepo extends CrudRepository<User, Long> {
 
 }
