@@ -13,6 +13,7 @@ import ags.SechsY.temperaturverwaltung.model.Temperature;
 import ags.SechsY.temperaturverwaltung.model.User;
 import ags.SechsY.temperaturverwaltung.service.LogService;
 import ags.SechsY.temperaturverwaltung.service.ManufacturerService;
+import ags.SechsY.temperaturverwaltung.service.ServerRackService;
 import ags.SechsY.temperaturverwaltung.service.UserService;
 
 @Component
@@ -24,6 +25,8 @@ public class DemoData {
     LogService logService;
     @Autowired
     ManufacturerService manufacturerService;
+    @Autowired
+    ServerRackService serverRackService;
 
     @EventListener
     public void appReady(ApplicationReadyEvent event) {
@@ -38,10 +41,9 @@ public class DemoData {
         manufacturerService.createManufacturer(manufacturer1);
         manufacturerService.createManufacturer(manufacturer2);
 
-        ServerRack rack1 = new ServerRack();
-        ServerRack rack2 = new ServerRack();
-        ServerRack rack3 = new ServerRack();
-        // TODO: save
+        ServerRack rack1 = serverRackService.createRack();
+        ServerRack rack2 = serverRackService.createRack();
+        ServerRack rack3 = serverRackService.createRack();
 
         User user1 = new User("Tim", "Ebby", "015772", true);
         User user2 = new User("Nick", "Niggi", "99085", false);
