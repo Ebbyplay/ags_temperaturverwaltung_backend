@@ -1,15 +1,16 @@
-package ags.SechsY.temperaturverwaltung.mapper;
+package ags.SechsY.temperaturverwaltung.mapper.response;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import ags.SechsY.temperaturverwaltung.dto.LogResponseDTO;
+import ags.SechsY.temperaturverwaltung.dto.response.LogResponseDTO;
+import ags.SechsY.temperaturverwaltung.mapper.BaseMapper;
 import ags.SechsY.temperaturverwaltung.model.Log;
 import ags.SechsY.temperaturverwaltung.service.SensorService;
 import ags.SechsY.temperaturverwaltung.service.UserService;
 
 @Component
-public class LogMapper implements BaseMapper<Log, LogResponseDTO> {
+public class LogResponseMapper implements BaseMapper<Log, LogResponseDTO> {
 
     @Autowired
     UserService userService;

@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import ags.SechsY.temperaturverwaltung.dto.UserRequestDTO;
-import ags.SechsY.temperaturverwaltung.mapper.UserMapper;
+import ags.SechsY.temperaturverwaltung.dto.request.UserRequestDTO;
+import ags.SechsY.temperaturverwaltung.mapper.request.UserRequestMapper;
 import ags.SechsY.temperaturverwaltung.model.User;
 import ags.SechsY.temperaturverwaltung.service.UserService;
 
@@ -25,7 +25,7 @@ public class UserController {
     @Autowired
     private UserService userService;
     @Autowired
-    private UserMapper userMapper;
+    private UserRequestMapper userMapper;
 
     @GetMapping("/{id}")
     public User findUser(@PathVariable("id") Long id) {

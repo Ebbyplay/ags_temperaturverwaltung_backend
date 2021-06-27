@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import ags.SechsY.temperaturverwaltung.dto.LogResponseDTO;
-import ags.SechsY.temperaturverwaltung.mapper.LogMapper;
+import ags.SechsY.temperaturverwaltung.dto.response.LogResponseDTO;
+import ags.SechsY.temperaturverwaltung.mapper.response.LogResponseMapper;
 import ags.SechsY.temperaturverwaltung.model.Log;
 import ags.SechsY.temperaturverwaltung.service.LogService;
 
@@ -21,7 +21,7 @@ public class LogController {
     @Autowired
     private LogService logService;
     @Autowired
-    private LogMapper logMapper;
+    private LogResponseMapper logMapper;
 
     @GetMapping("/findAll")
     public List<LogResponseDTO> findAll() {

@@ -1,4 +1,4 @@
-package ags.SechsY.temperaturverwaltung.dto;
+package ags.SechsY.temperaturverwaltung.dto.request;
 
 import lombok.Data;
 

@@ -1,12 +1,13 @@
-package ags.SechsY.temperaturverwaltung.mapper;
+package ags.SechsY.temperaturverwaltung.mapper.request;
 
 import org.springframework.stereotype.Component;
 
-import ags.SechsY.temperaturverwaltung.dto.UserRequestDTO;
+import ags.SechsY.temperaturverwaltung.dto.request.UserRequestDTO;
+import ags.SechsY.temperaturverwaltung.mapper.BaseMapper;
 import ags.SechsY.temperaturverwaltung.model.User;
 
 @Component
-public class UserMapper implements BaseMapper<User, UserRequestDTO> {
+public class UserRequestMapper implements BaseMapper<User, UserRequestDTO> {
 
     @Override
     public UserRequestDTO mapEntity(User user) {
