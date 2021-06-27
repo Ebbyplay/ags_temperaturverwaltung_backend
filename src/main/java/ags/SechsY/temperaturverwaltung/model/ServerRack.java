@@ -10,6 +10,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import lombok.Data;
 
 @Data
@@ -22,6 +24,7 @@ public class ServerRack {
     @Column(name = "id")
     private long id;
 
+    @JsonBackReference
     @OneToOne
     @JoinColumn(name = "sensor_id", nullable = true)
     private Sensor sensor;
