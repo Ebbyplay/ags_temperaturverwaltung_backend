@@ -66,9 +66,9 @@ public class DemoData {
         Temperature temp1 = new Temperature(50.f, sensor1);
         Temperature temp2 = new Temperature(55.f, sensor1);
         Temperature temp3 = new Temperature(56.f, sensor1);
-        temperatureService.createTemperature(temp1);
-        temperatureService.createTemperature(temp2);
-        temperatureService.createTemperature(temp3);
+        temperatureService.create(temp1);
+        temperatureService.create(temp2);
+        temperatureService.create(temp3);
 
         Log log1 = new Log(20.f, user1, sensor1);
         logService.createLog(log1);

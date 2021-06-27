@@ -14,7 +14,7 @@ public class TemperatureService {
     @Autowired
     private TemperatureRepo temperatureRepo;
 
-    public Temperature createTemperature(Temperature temperature) {
+    public Temperature create(Temperature temperature) {
         return temperatureRepo.save(temperature);
     }
 
@@ -22,11 +22,11 @@ public class TemperatureService {
         return (List<Temperature>) temperatureRepo.findAll();
     }
 
-    public List<Temperature> findLast10Temperatures() {
+    public List<Temperature> findLast10() {
         return temperatureRepo.findLast10Temperatures();
     }
 
-    public void deleteTemperature(Temperature temperature) {
-        temperatureRepo.delete(temperature);
+    public void deleteById(long id) {
+        temperatureRepo.deleteById(id);
     }
 }
