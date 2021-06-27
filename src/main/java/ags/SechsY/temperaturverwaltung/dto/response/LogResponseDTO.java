@@ -10,6 +10,6 @@ public class LogResponseDTO {
     private Float newMaxTemperature;
     private LocalDateTime timestamp;
     private long userId;
-    private long sesnorId;
+    private long sensorId;
 
 }

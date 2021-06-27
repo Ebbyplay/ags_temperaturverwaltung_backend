@@ -11,8 +11,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-
 import lombok.Getter;
 import lombok.Setter;
 
@@ -28,11 +26,10 @@ public class Sensor {
     private long id;
 
     @Column(name = "max_temperature", nullable = false)
-    private Float max_temperature;
+    private Float maxTemperature;
 
-    @JsonManagedReference
     @OneToOne(cascade = CascadeType.MERGE)
-    @JoinColumn(name = "rack_id", nullable = false)
+    @JoinColumn(name = "rackId", nullable = false)
     private ServerRack serverRack;
 
     @ManyToOne(cascade = CascadeType.MERGE)
@@ -44,7 +41,7 @@ public class Sensor {
     }
 
     public Sensor(Float max_temp, ServerRack rack, Manufacturer manufacturer) {
-        this.max_temperature = max_temp;
+        this.maxTemperature = max_temp;
         this.serverRack = rack;
         this.manufacturer = manufacturer;
     }

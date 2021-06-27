@@ -1,10 +1,12 @@
 package ags.SechsY.temperaturverwaltung.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import ags.SechsY.temperaturverwaltung.exception.ManufacturerNotFoundException;
 import ags.SechsY.temperaturverwaltung.model.Manufacturer;
 import ags.SechsY.temperaturverwaltung.repo.ManufacturerRepo;
 
@@ -20,5 +22,13 @@ public class ManufacturerService {
 
     public List<Manufacturer> findAll() {
         return (List<Manufacturer>) manufacturerRepo.findAll();
+    }
+
+    public Manufacturer findById(long id) {
+        Optional<Manufacturer> manufacturer = manufacturerRepo.findById(id);
+        if (!manufacturer.isPresent()) {
+            throw new ManufacturerNotFoundException(id);
+        }
+        return manufacturer.get();
     }
 }

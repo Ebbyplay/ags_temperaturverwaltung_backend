@@ -37,7 +37,7 @@ public class SensorService {
         return (List<Sensor>) sensorRepo.findAll();
     }
 
-    public Sensor findSensorById(Long id) {
+    public Sensor findById(Long id) {
         Optional<Sensor> sensor = sensorRepo.findById(id);
         if (!sensor.isPresent()) {
             throw new SensorNotFoundException(id);
