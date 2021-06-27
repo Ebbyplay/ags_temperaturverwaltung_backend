@@ -29,7 +29,7 @@ public class UserController {
 
     @GetMapping("/{id}")
     public User findUser(@PathVariable("id") Long id) {
-        return userService.findUserById(id);
+        return userService.findById(id);
     }
 
     @GetMapping("/findAll")
@@ -40,16 +40,16 @@ public class UserController {
     @PostMapping("/create")
     public User createUser(@RequestBody UserRequestDTO dto) {
         User newUser = userMapper.mapDTO(dto);
-        return userService.createUser(newUser);
+        return userService.create(newUser);
     }
 
     @PutMapping("/update")
     public User updateUser(@RequestBody User user) {
-        return userService.updateUser(user);
+        return userService.update(user);
     }
 
     @DeleteMapping("/delete/{id}")
-    public void deleteUser(@PathVariable("id") Long id) {
-        userService.deleteUserById(id);
+    public void deleteById(@PathVariable("id") Long id) {
+        userService.deleteById(id);
     }
 }

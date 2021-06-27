@@ -4,8 +4,10 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
+import ags.SechsY.temperaturverwaltung.exception.EntityIsStillBeingUsedException;
 import ags.SechsY.temperaturverwaltung.exception.EntityNotFoundException;
 import ags.SechsY.temperaturverwaltung.model.Manufacturer;
 import ags.SechsY.temperaturverwaltung.repo.ManufacturerRepo;
@@ -33,6 +35,10 @@ public class ManufacturerService {
     }
 
     public void deleteById(long id) {
-        manufacturerRepo.deleteById(id);
+        try {
+            manufacturerRepo.deleteById(id);
+        } catch (DataIntegrityViolationException e) {
+            throw new EntityIsStillBeingUsedException(Manufacturer.ENTITY_NAME, id);
+        }
     }
 }

@@ -32,7 +32,7 @@ public class LogResponseMapper implements BaseMapper<Log, LogResponseDTO> {
         Log log = new Log();
         log.setTimestamp(dto.getTimestamp());
         log.setNewMaxTemperature(dto.getNewMaxTemperature());
-        log.setUser(userService.findUserById(dto.getUserId()));
+        log.setUser(userService.findById(dto.getUserId()));
         log.setSensor(sensorService.findById(dto.getSensorId()));
         return log;
     }

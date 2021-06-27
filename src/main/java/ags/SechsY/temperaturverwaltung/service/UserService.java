@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import ags.SechsY.temperaturverwaltung.exception.EntityIsStillBeingUsedException;
 import ags.SechsY.temperaturverwaltung.exception.EntityNotFoundException;
 import ags.SechsY.temperaturverwaltung.model.User;
 import ags.SechsY.temperaturverwaltung.repo.UserRepo;
@@ -16,11 +17,11 @@ public class UserService {
     @Autowired
     private UserRepo userRepo;
 
-    public User createUser(User user) {
+    public User create(User user) {
         return userRepo.save(user);
     }
 
-    public User findUserById(Long id) {
+    public User findById(Long id) {
         Optional<User> user = userRepo.findById(id);
 
         if (!user.isPresent()) {
@@ -33,18 +34,22 @@ public class UserService {
         return (List<User>) userRepo.findAll();
     }
 
-    public User updateUser(User user) {
-        if (findUserById(user.getId()) != null) {
-            return createUser(user);
+    public User update(User user) {
+        if (findById(user.getId()) != null) {
+            return create(user);
         } else {
             throw new EntityNotFoundException(User.ENTITY_NAME, user.getId());
         }
     }
 
-    public void deleteUserById(Long id) {
-        User user = findUserById(id);
+    public void deleteById(Long id) {
+        User user = findById(id);
         if (user != null) {
-            userRepo.delete(user);
+            try {
+                userRepo.delete(user);
+            } catch (Exception e) {
+                throw new EntityIsStillBeingUsedException(User.ENTITY_NAME, id);
+            }
         } else {
             throw new EntityNotFoundException(User.ENTITY_NAME, id);
         }
