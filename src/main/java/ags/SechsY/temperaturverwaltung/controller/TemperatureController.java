@@ -27,24 +27,24 @@ public class TemperatureController {
 
     @GetMapping("/findAll")
     public List<TemperatureResponseDTO> findAll() {
-        List<TemperatureResponseDTO> dtos = new ArrayList<>();
-        for (Temperature temp : temperatureService.findAll()) {
-            dtos.add(mapper.mapEntity(temp));
-        }
-        return dtos;
+        return toDTOList(temperatureService.findAll());
     }
 
     @GetMapping("/findLast10")
     public List<TemperatureResponseDTO> findLast10() {
-        List<TemperatureResponseDTO> dtos = new ArrayList<>();
-        for (Temperature temp : temperatureService.findLast10()) {
-            dtos.add(mapper.mapEntity(temp));
-        }
-        return dtos;
+        return toDTOList(temperatureService.findLast10());
     }
 
     @DeleteMapping("/delete/{id}")
     public void deleteById(@PathVariable long id) {
         temperatureService.deleteById(id);
+    }
+
+    private List<TemperatureResponseDTO> toDTOList(List<Temperature> list) {
+        List<TemperatureResponseDTO> dtos = new ArrayList<>();
+        for (Temperature temp : list) {
+            dtos.add(mapper.mapEntity(temp));
+        }
+        return dtos;
     }
 }

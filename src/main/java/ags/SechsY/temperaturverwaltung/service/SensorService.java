@@ -20,7 +20,7 @@ public class SensorService {
     @Autowired
     ServerRackService rackService;
 
-    public Sensor createSensor(Sensor sensor) {
+    public Sensor create(Sensor sensor) {
         ServerRack rack = rackService.findById(sensor.getServerRack().getId());
         if (rack.getSensor() == null) {
             sensor = sensorRepo.save(sensor);
@@ -45,16 +45,16 @@ public class SensorService {
         return sensor.get();
     }
 
-    public Sensor updateSensor(Sensor sensor) {
-        return sensorRepo.save(sensor);
+    public Sensor update(Sensor sensor) {
+        return create(sensor);
     }
 
-    public void deleteSensor(Sensor sensor) {
+    public void deleteById(long id) {
         try {
-            sensorRepo.delete(sensor);
+            sensorRepo.deleteById(id);
         } catch (IllegalArgumentException e) {
             e.fillInStackTrace();
-            throw new EntityNotFoundException(Sensor.ENTITY_NAME, sensor.getId());
+            throw new EntityNotFoundException(Sensor.ENTITY_NAME, id);
         }
     }
 }

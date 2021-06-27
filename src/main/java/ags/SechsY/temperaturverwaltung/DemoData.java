@@ -59,9 +59,9 @@ public class DemoData {
         Sensor sensor1 = new Sensor(60.f, rack1, manufacturer1);
         Sensor sensor2 = new Sensor(80.f, rack2, manufacturer1);
         Sensor sensor3 = new Sensor(70.f, rack3, manufacturer2);
-        sensorService.createSensor(sensor1);
-        sensorService.createSensor(sensor2);
-        sensorService.createSensor(sensor3);
+        sensorService.create(sensor1);
+        sensorService.create(sensor2);
+        sensorService.create(sensor3);
 
         Temperature temp1 = new Temperature(50.f, sensor1);
         Temperature temp2 = new Temperature(55.f, sensor1);
