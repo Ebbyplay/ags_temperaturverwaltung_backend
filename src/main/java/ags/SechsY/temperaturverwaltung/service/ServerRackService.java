@@ -16,7 +16,7 @@ public class ServerRackService {
     @Autowired
     ServerRackRepo serverRackRepo;
 
-    public ServerRack createRack() {
+    public ServerRack create() {
         return serverRackRepo.save(new ServerRack());
     }
 
@@ -32,7 +32,7 @@ public class ServerRackService {
         return rack.get();
     }
 
-    public ServerRack updateServerRack(ServerRack rack) {
+    public ServerRack update(ServerRack rack) {
         return serverRackRepo.save(rack);
     }
 }

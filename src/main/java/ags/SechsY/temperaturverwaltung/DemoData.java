@@ -47,9 +47,9 @@ public class DemoData {
         manufacturerService.createManufacturer(manufacturer1);
         manufacturerService.createManufacturer(manufacturer2);
 
-        ServerRack rack1 = serverRackService.createRack();
-        ServerRack rack2 = serverRackService.createRack();
-        ServerRack rack3 = serverRackService.createRack();
+        ServerRack rack1 = serverRackService.create();
+        ServerRack rack2 = serverRackService.create();
+        ServerRack rack3 = serverRackService.create();
 
         User user1 = new User("Tim", "Ebby", "015772", true);
         User user2 = new User("Nick", "Niggi", "99085", false);
