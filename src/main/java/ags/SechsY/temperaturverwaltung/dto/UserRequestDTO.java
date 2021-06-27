@@ -3,7 +3,7 @@ package ags.SechsY.temperaturverwaltung.dto;
 import lombok.Data;
 
 @Data
-public class UserDTO {
+public class UserRequestDTO {
 
     private String name;
     private String nickname;

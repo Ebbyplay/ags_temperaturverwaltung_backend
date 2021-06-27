@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import ags.SechsY.temperaturverwaltung.dto.UserDTO;
+import ags.SechsY.temperaturverwaltung.dto.UserRequestDTO;
 import ags.SechsY.temperaturverwaltung.mapper.UserMapper;
 import ags.SechsY.temperaturverwaltung.model.User;
 import ags.SechsY.temperaturverwaltung.service.UserService;
@@ -38,8 +38,8 @@ public class UserController {
     }
 
     @PostMapping("/create")
-    public User createUser(@RequestBody UserDTO userDto) {
-        User newUser = userMapper.mapDTO(userDto);
+    public User createUser(@RequestBody UserRequestDTO dto) {
+        User newUser = userMapper.mapDTO(dto);
         return userService.createUser(newUser);
     }
 

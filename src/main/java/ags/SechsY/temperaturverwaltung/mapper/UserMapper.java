@@ -2,15 +2,15 @@ package ags.SechsY.temperaturverwaltung.mapper;
 
 import org.springframework.stereotype.Component;
 
-import ags.SechsY.temperaturverwaltung.dto.UserDTO;
+import ags.SechsY.temperaturverwaltung.dto.UserRequestDTO;
 import ags.SechsY.temperaturverwaltung.model.User;
 
 @Component
-public class UserMapper implements BaseMapper<User, UserDTO> {
+public class UserMapper implements BaseMapper<User, UserRequestDTO> {
 
     @Override
-    public UserDTO mapEntity(User user) {
-        UserDTO userDto = new UserDTO();
+    public UserRequestDTO mapEntity(User user) {
+        UserRequestDTO userDto = new UserRequestDTO();
         userDto.setName(user.getName());
         userDto.setNickname(user.getNickname());
         userDto.setPhonenumber(user.getPhonenumber());
@@ -19,7 +19,7 @@ public class UserMapper implements BaseMapper<User, UserDTO> {
     }
 
     @Override
-    public User mapDTO(UserDTO userDto) {
+    public User mapDTO(UserRequestDTO userDto) {
         User user = new User();
         user.setName(userDto.getName());
         user.setNickname(userDto.getNickname());
