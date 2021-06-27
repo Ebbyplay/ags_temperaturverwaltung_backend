@@ -16,6 +16,8 @@ import lombok.Data;
 @Table(name = "server_rack")
 public class ServerRack {
 
+    public static String ENTITY_NAME = "ServerRack";
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")

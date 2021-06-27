@@ -16,6 +16,8 @@ import lombok.Setter;
 @Table(name = "manufacturer")
 public class Manufacturer {
 
+    public static String ENTITY_NAME = "Manufacturer";
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")

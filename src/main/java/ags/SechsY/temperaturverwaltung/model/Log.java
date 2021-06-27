@@ -19,6 +19,8 @@ import lombok.Data;
 @Table(name = "log")
 public class Log {
 
+    public static String ENTITY_NAME = "Log";
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")

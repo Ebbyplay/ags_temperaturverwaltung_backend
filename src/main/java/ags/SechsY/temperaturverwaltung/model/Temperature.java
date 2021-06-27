@@ -21,6 +21,8 @@ import lombok.Setter;
 @Table(name = "temperature")
 public class Temperature {
 
+    public static String ENTITY_NAME = "Temperature";
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")

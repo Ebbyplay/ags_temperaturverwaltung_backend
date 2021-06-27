@@ -20,6 +20,8 @@ import lombok.Setter;
 @Table(name = "sensor")
 public class Sensor {
 
+    public static String ENTITY_NAME = "Sensor";
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
