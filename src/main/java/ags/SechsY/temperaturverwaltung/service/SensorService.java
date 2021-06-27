@@ -6,7 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import ags.SechsY.temperaturverwaltung.exception.SensorNotFoundException;
+import ags.SechsY.temperaturverwaltung.exception.EntityNotFoundException;
 import ags.SechsY.temperaturverwaltung.exception.ServerRackAlreadyHasSensorException;
 import ags.SechsY.temperaturverwaltung.model.Sensor;
 import ags.SechsY.temperaturverwaltung.model.ServerRack;
@@ -40,7 +40,7 @@ public class SensorService {
     public Sensor findById(Long id) {
         Optional<Sensor> sensor = sensorRepo.findById(id);
         if (!sensor.isPresent()) {
-            throw new SensorNotFoundException(id);
+            throw new EntityNotFoundException(Sensor.ENTITY_NAME, id);
         }
         return sensor.get();
     }
@@ -54,7 +54,7 @@ public class SensorService {
             sensorRepo.delete(sensor);
         } catch (IllegalArgumentException e) {
             e.fillInStackTrace();
-            throw new SensorNotFoundException(sensor.getId());
+            throw new EntityNotFoundException(Sensor.ENTITY_NAME, sensor.getId());
         }
     }
 }

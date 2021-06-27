@@ -6,7 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import ags.SechsY.temperaturverwaltung.exception.ManufacturerNotFoundException;
+import ags.SechsY.temperaturverwaltung.exception.EntityNotFoundException;
 import ags.SechsY.temperaturverwaltung.model.Manufacturer;
 import ags.SechsY.temperaturverwaltung.repo.ManufacturerRepo;
 
@@ -27,8 +27,12 @@ public class ManufacturerService {
     public Manufacturer findById(long id) {
         Optional<Manufacturer> manufacturer = manufacturerRepo.findById(id);
         if (!manufacturer.isPresent()) {
-            throw new ManufacturerNotFoundException(id);
+            throw new EntityNotFoundException(Manufacturer.ENTITY_NAME, id);
         }
         return manufacturer.get();
+    }
+
+    public void deleteById(long id) {
+        manufacturerRepo.deleteById(id);
     }
 }

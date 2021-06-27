@@ -6,7 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import ags.SechsY.temperaturverwaltung.exception.UserNotFoundException;
+import ags.SechsY.temperaturverwaltung.exception.EntityNotFoundException;
 import ags.SechsY.temperaturverwaltung.model.User;
 import ags.SechsY.temperaturverwaltung.repo.UserRepo;
 
@@ -24,7 +24,7 @@ public class UserService {
         Optional<User> user = userRepo.findById(id);
 
         if (!user.isPresent()) {
-            throw new UserNotFoundException(id);
+            throw new EntityNotFoundException(User.ENTITY_NAME, id);
         }
         return user.get();
     }
@@ -37,7 +37,7 @@ public class UserService {
         if (findUserById(user.getId()) != null) {
             return createUser(user);
         } else {
-            throw new UserNotFoundException(user.getId());
+            throw new EntityNotFoundException(User.ENTITY_NAME, user.getId());
         }
     }
 
@@ -46,7 +46,7 @@ public class UserService {
         if (user != null) {
             userRepo.delete(user);
         } else {
-            throw new UserNotFoundException(id);
+            throw new EntityNotFoundException(User.ENTITY_NAME, id);
         }
     }
 
