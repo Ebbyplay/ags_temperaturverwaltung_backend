@@ -15,6 +15,7 @@ import ags.SechsY.temperaturverwaltung.service.LogService;
 import ags.SechsY.temperaturverwaltung.service.ManufacturerService;
 import ags.SechsY.temperaturverwaltung.service.SensorService;
 import ags.SechsY.temperaturverwaltung.service.ServerRackService;
+import ags.SechsY.temperaturverwaltung.service.TemperatureService;
 import ags.SechsY.temperaturverwaltung.service.UserService;
 
 @Component
@@ -30,6 +31,8 @@ public class DemoData {
     ServerRackService serverRackService;
     @Autowired
     SensorService sensorService;
+    @Autowired
+    TemperatureService temperatureService;
 
     @EventListener
     public void appReady(ApplicationReadyEvent event) {
@@ -60,16 +63,12 @@ public class DemoData {
         sensorService.createSensor(sensor2);
         sensorService.createSensor(sensor3);
 
-        try {
-            Temperature temp1 = new Temperature(50.f, sensor1);
-            wait(2000);
-            Temperature temp2 = new Temperature(55.f, sensor1);
-            wait(2000);
-            Temperature temp3 = new Temperature(56.f, sensor1);
-            // TODO: save
-        } catch (Exception e) {
-            e.fillInStackTrace();
-        }
+        Temperature temp1 = new Temperature(50.f, sensor1);
+        Temperature temp2 = new Temperature(55.f, sensor1);
+        Temperature temp3 = new Temperature(56.f, sensor1);
+        temperatureService.createTemperature(temp1);
+        temperatureService.createTemperature(temp2);
+        temperatureService.createTemperature(temp3);
 
         Log log1 = new Log(20.f, user1, sensor1);
         logService.createLog(log1);
