@@ -27,6 +27,8 @@ public class SensorService {
 
             rack.setSensor(sensor);
             rackService.update(rack);
+        } else if (rack.getSensor().getId() == sensor.getId()) {
+            sensor = sensorRepo.save(sensor);
         } else {
             throw new ServerRackAlreadyHasSensorException(rack.getId());
         }
@@ -51,6 +53,9 @@ public class SensorService {
 
     public void deleteById(long id) {
         try {
+            Sensor sensor = findById(id);
+            ServerRack rack = sensor.getServerRack();
+            rack.setSensor(null);// TODO: doesnt work because constraints
             sensorRepo.deleteById(id);
         } catch (IllegalArgumentException e) {
             e.fillInStackTrace();
