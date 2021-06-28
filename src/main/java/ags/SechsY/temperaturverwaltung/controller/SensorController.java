@@ -16,7 +16,6 @@ import ags.SechsY.temperaturverwaltung.dto.request.NewSensorRequestDTO;
 import ags.SechsY.temperaturverwaltung.dto.request.UpdateMaxTempDTO;
 import ags.SechsY.temperaturverwaltung.dto.request.UpdateSensorDTO;
 import ags.SechsY.temperaturverwaltung.dto.response.SensorResponseDTO;
-import ags.SechsY.temperaturverwaltung.exception.SensorMaxTemperatureUpdateException;
 import ags.SechsY.temperaturverwaltung.mapper.request.NewSensorRequestMapper;
 import ags.SechsY.temperaturverwaltung.mapper.response.SensorResponseMapper;
 import ags.SechsY.temperaturverwaltung.model.Log;
