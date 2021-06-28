@@ -14,15 +14,20 @@ import org.springframework.web.bind.annotation.RestController;
 
 import ags.SechsY.temperaturverwaltung.dto.request.NewSensorRequestDTO;
 import ags.SechsY.temperaturverwaltung.dto.request.UpdateMaxTempDTO;
+import ags.SechsY.temperaturverwaltung.dto.request.UpdateSensorDTO;
 import ags.SechsY.temperaturverwaltung.dto.response.SensorResponseDTO;
 import ags.SechsY.temperaturverwaltung.exception.SensorMaxTemperatureUpdateException;
 import ags.SechsY.temperaturverwaltung.mapper.request.NewSensorRequestMapper;
 import ags.SechsY.temperaturverwaltung.mapper.response.SensorResponseMapper;
 import ags.SechsY.temperaturverwaltung.model.Log;
+import ags.SechsY.temperaturverwaltung.model.Manufacturer;
 import ags.SechsY.temperaturverwaltung.model.Sensor;
+import ags.SechsY.temperaturverwaltung.model.ServerRack;
 import ags.SechsY.temperaturverwaltung.model.User;
 import ags.SechsY.temperaturverwaltung.service.LogService;
+import ags.SechsY.temperaturverwaltung.service.ManufacturerService;
 import ags.SechsY.temperaturverwaltung.service.SensorService;
+import ags.SechsY.temperaturverwaltung.service.ServerRackService;
 import ags.SechsY.temperaturverwaltung.service.UserService;
 
 import org.springframework.web.bind.annotation.RequestBody;
@@ -42,6 +47,10 @@ public class SensorController {
     LogService logService;
     @Autowired
     UserService userService;
+    @Autowired
+    ManufacturerService manufacturerService;
+    @Autowired
+    ServerRackService rackService;
 
     @GetMapping("/{id}")
     public SensorResponseDTO findById(@PathVariable long id) {
@@ -60,15 +69,18 @@ public class SensorController {
         return responseMapper.mapEntity(sensor);
     }
 
-    @PutMapping(value = "/update") // TODO:UpdateSensorRequestDTO and Mapper | rack.sensor ist not being updated! |
-                                   // TESTING
-    public SensorResponseDTO update(@RequestBody Sensor newSensor) {
-        Sensor oldSensor = sensorService.findById(newSensor.getId());
-        if (!oldSensor.getMaxTemperature().equals(newSensor.getMaxTemperature())) {
-            throw new SensorMaxTemperatureUpdateException();
-        }
-        newSensor = sensorService.update(newSensor);
-        return responseMapper.mapEntity(newSensor);
+    @PutMapping(value = "/update")
+    public SensorResponseDTO update(@RequestBody UpdateSensorDTO dto) {
+        Sensor sensor = sensorService.findById(dto.getSensorId());
+        Manufacturer manufacturer = manufacturerService.findById(dto.getManufacturerId());
+        ServerRack oldRack = sensor.getServerRack();
+        oldRack.setSensor(null);
+        rackService.update(oldRack);
+        ServerRack rack = rackService.findById(dto.getRackId());
+        sensor.setManufacturer(manufacturer);
+        sensor.setServerRack(rack);
+        sensor = sensorService.update(sensor);
+        return responseMapper.mapEntity(sensor);
     }
 
     @PutMapping(value = "/update/max_temp")
