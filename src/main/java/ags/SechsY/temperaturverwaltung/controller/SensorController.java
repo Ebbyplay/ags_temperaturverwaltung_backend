@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import ags.SechsY.temperaturverwaltung.dto.request.NewSensorRequestDTO;
+import ags.SechsY.temperaturverwaltung.dto.request.UpdateMaxTempDTO;
 import ags.SechsY.temperaturverwaltung.dto.response.SensorResponseDTO;
 import ags.SechsY.temperaturverwaltung.exception.SensorMaxTemperatureUpdateException;
 import ags.SechsY.temperaturverwaltung.mapper.request.NewSensorRequestMapper;
@@ -22,6 +23,8 @@ import ags.SechsY.temperaturverwaltung.model.Sensor;
 import ags.SechsY.temperaturverwaltung.model.User;
 import ags.SechsY.temperaturverwaltung.service.LogService;
 import ags.SechsY.temperaturverwaltung.service.SensorService;
+import ags.SechsY.temperaturverwaltung.service.UserService;
+
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.PutMapping;
 
@@ -37,6 +40,8 @@ public class SensorController {
     SensorResponseMapper responseMapper;
     @Autowired
     LogService logService;
+    @Autowired
+    UserService userService;
 
     @GetMapping("/{id}")
     public SensorResponseDTO findById(@PathVariable long id) {
@@ -59,8 +64,6 @@ public class SensorController {
                                    // TESTING
     public SensorResponseDTO update(@RequestBody Sensor newSensor) {
         Sensor oldSensor = sensorService.findById(newSensor.getId());
-        Float oldS = oldSensor.getMaxTemperature();
-        Float newS = newSensor.getMaxTemperature();
         if (!oldSensor.getMaxTemperature().equals(newSensor.getMaxTemperature())) {
             throw new SensorMaxTemperatureUpdateException();
         }
@@ -68,9 +71,12 @@ public class SensorController {
         return responseMapper.mapEntity(newSensor);
     }
 
-    @PutMapping(value = "/update/max_temp") // TODO: UpdateMaxTempDTO and Mapper | TESTING
-    public SensorResponseDTO updateMaxTemp(@RequestBody Sensor sensor, @RequestBody User user) {
-        logService.createLog(new Log(sensor.getMaxTemperature(), user, sensor));
+    @PutMapping(value = "/update/max_temp")
+    public SensorResponseDTO updateMaxTemp(@RequestBody UpdateMaxTempDTO dto) {
+        Sensor sensor = sensorService.findById(dto.getSensorId());
+        User user = userService.findById(dto.getUserId());
+        logService.createLog(new Log(dto.getNewMaxTemperature(), user, sensor));
+        sensor.setMaxTemperature(dto.getNewMaxTemperature());
         sensor = sensorService.update(sensor);
         return responseMapper.mapEntity(sensor);
     }

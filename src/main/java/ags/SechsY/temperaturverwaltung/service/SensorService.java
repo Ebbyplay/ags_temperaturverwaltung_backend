@@ -27,6 +27,8 @@ public class SensorService {
 
             rack.setSensor(sensor);
             rackService.update(rack);
+        } else if (rack.getSensor().getId() == sensor.getId()) {
+            sensor = sensorRepo.save(sensor);
         } else {
             throw new ServerRackAlreadyHasSensorException(rack.getId());
         }
