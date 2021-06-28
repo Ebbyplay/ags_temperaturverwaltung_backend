@@ -53,6 +53,9 @@ public class SensorService {
 
     public void deleteById(long id) {
         try {
+            Sensor sensor = findById(id);
+            ServerRack rack = sensor.getServerRack();
+            rack.setSensor(null);// TODO: doesnt work because constraints
             sensorRepo.deleteById(id);
         } catch (IllegalArgumentException e) {
             e.fillInStackTrace();
