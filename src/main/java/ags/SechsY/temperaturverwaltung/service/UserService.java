@@ -55,4 +55,12 @@ public class UserService {
         }
     }
 
+    public User findByNickname(String nickname) {
+        User user = userRepo.findByNickname(nickname);
+        if (user == null) {
+            throw new EntityNotFoundException(User.ENTITY_NAME);
+        }
+        return user;
+    }
+
 }

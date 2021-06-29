@@ -17,6 +17,7 @@ import ags.SechsY.temperaturverwaltung.dto.request.UserRequestDTO;
 import ags.SechsY.temperaturverwaltung.mapper.request.UserRequestMapper;
 import ags.SechsY.temperaturverwaltung.model.User;
 import ags.SechsY.temperaturverwaltung.service.UserService;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @RestController
 @RequestMapping(value = "/user", produces = { MediaType.APPLICATION_JSON_VALUE })
@@ -35,6 +36,11 @@ public class UserController {
     @GetMapping("/findAll")
     public List<User> findAll() {
         return userService.findAll();
+    }
+
+    @GetMapping(value = "/findByNickname")
+    public User findByNickname(@RequestParam String nickname) {
+        return userService.findByNickname(nickname);
     }
 
     @PostMapping("/create")
