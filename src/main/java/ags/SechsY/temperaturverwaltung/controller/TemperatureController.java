@@ -15,6 +15,7 @@ import ags.SechsY.temperaturverwaltung.dto.response.TemperatureResponseDTO;
 import ags.SechsY.temperaturverwaltung.mapper.response.TemperatureResponseMapper;
 import ags.SechsY.temperaturverwaltung.model.Temperature;
 import ags.SechsY.temperaturverwaltung.service.TemperatureService;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @RestController
 @RequestMapping(value = "temperature", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -33,6 +34,11 @@ public class TemperatureController {
     @GetMapping("/findLast10")
     public List<TemperatureResponseDTO> findLast10() {
         return toDTOList(temperatureService.findLast10());
+    }
+
+    @GetMapping(value = "/findBySensorId/{id}")
+    public List<TemperatureResponseDTO> findBySensorId(@PathVariable long id) {
+        return toDTOList(temperatureService.findBySensorId(id));
     }
 
     @DeleteMapping("/delete/{id}")

@@ -26,6 +26,10 @@ public class TemperatureService {
         return temperatureRepo.findLast10Temperatures();
     }
 
+    public List<Temperature> findBySensorId(long sensorId) {
+        return temperatureRepo.findBySensorId(sensorId);
+    }
+
     public void deleteById(long id) {
         temperatureRepo.deleteById(id);
     }
