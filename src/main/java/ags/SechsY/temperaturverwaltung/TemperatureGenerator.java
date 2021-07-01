@@ -30,7 +30,7 @@ public class TemperatureGenerator {
                 Float currentTemp = temps.get(0).getTemperature_value();
                 Random rand = new Random();
                 float modificator = (currentTemp / (sensor.getMaxTemperature())) * -10;
-                newTempValue = currentTemp - modificator + (rand.nextFloat() * 5);
+                newTempValue = currentTemp + modificator + (rand.nextFloat() * 5);
             }
             Temperature temp = new Temperature(newTempValue, sensor);
             System.out.println(temperatureService.create(temp));

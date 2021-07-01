@@ -12,7 +12,7 @@ import ags.SechsY.temperaturverwaltung.model.Temperature;
 @Repository
 public interface TemperatureRepo extends CrudRepository<Temperature, Long> {
 
-    @Query(value = "SELECT * FROM temperature ORDER BY timestamp ASC LIMIT 10", nativeQuery = true)
+    @Query(value = "SELECT * FROM temperature ORDER BY timestamp DESC LIMIT 10", nativeQuery = true)
     List<Temperature> findLast10Temperatures();
 
     @Query(value = "SELECT * FROM temperature WHERE sensor_id = :sensorId ORDER BY timestamp ASC", nativeQuery = true)
