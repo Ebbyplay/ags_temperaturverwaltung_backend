@@ -1,5 +1,6 @@
 package ags.SechsY.temperaturverwaltung.service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,5 +33,9 @@ public class TemperatureService {
 
     public void deleteById(long id) {
         temperatureRepo.deleteById(id);
+    }
+
+    public void deleteAllBefore(LocalDateTime timestamp) {
+        temperatureRepo.deleteAllBefore(timestamp);
     }
 }

@@ -1,5 +1,6 @@
 package ags.SechsY.temperaturverwaltung;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Random;
 
@@ -35,5 +36,8 @@ public class TemperatureGenerator {
             Temperature temp = new Temperature(newTempValue, sensor);
             System.out.println(temperatureService.create(temp));
         }
+
+        LocalDateTime deleteTimestamp = LocalDateTime.now().minusSeconds(sensors.size() * 100);
+        temperatureService.deleteAllBefore(deleteTimestamp);
     }
 }

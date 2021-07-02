@@ -1,5 +1,6 @@
 package ags.SechsY.temperaturverwaltung.repo;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.Query;
@@ -17,4 +18,7 @@ public interface TemperatureRepo extends CrudRepository<Temperature, Long> {
 
     @Query(value = "SELECT * FROM temperature WHERE sensor_id = :sensorId ORDER BY timestamp ASC", nativeQuery = true)
     List<Temperature> findBySensorId(@Param("sensorId") long sensorId);
+
+    @Query(value = "DELETE FROM temperature WHERE timestamp < :timestamp", nativeQuery = true)
+    void deleteAllBefore(@Param("timestamp") LocalDateTime timestamp);
 }
