@@ -53,8 +53,12 @@ public class DemoData {
 
         User user1 = new User("Tim", "Ebby", "015772", true);
         User user2 = new User("Nick", "Niggi", "99085", false);
+        User user3 = new User("Samuel", "Sam", "6969", true);
+        User user4 = new User("Lorenz", "Lorenz", "1337", true);
         userService.create(user1);
         userService.create(user2);
+        userService.create(user3);
+        userService.create(user4);
 
         Sensor sensor1 = new Sensor(60.f, rack1, manufacturer1);
         Sensor sensor2 = new Sensor(80.f, rack2, manufacturer1);
